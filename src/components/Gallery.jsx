@@ -2,19 +2,16 @@ import { useState } from "react";
 
 import cleanser1 from "../assets/cleanser1.jpg";
 import cleanser2 from "../assets/cleanser2.jpg";
-
 import serum1 from "../assets/serum1.jpg";
 import serum2 from "../assets/serum2.jpg";
-
 import moisturizer1 from "../assets/moisturizer1.jpg";
 import moisturizer2 from "../assets/moisturizer2.jpg";
-
 import sunscreen1 from "../assets/sunscreen1.jpg";
 import sunscreen2 from "../assets/sunscreen2.jpg";
 
 function Gallery() {
   const [activeCategory, setActiveCategory] = useState("All");
-  const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedIndex, setSelectedIndex] = useState(null);
 
   const images = [
     {
@@ -74,6 +71,34 @@ function Gallery() {
           (image) => image.category === activeCategory
         );
 
+  // Open selected image
+  const openLightbox = (index) => {
+    setSelectedIndex(index);
+  };
+
+  // Close lightbox
+  const closeLightbox = () => {
+    setSelectedIndex(null);
+  };
+
+  // Previous image
+  const previousImage = () => {
+    setSelectedIndex((current) =>
+      current === 0
+        ? filteredImages.length - 1
+        : current - 1
+    );
+  };
+
+  // Next image
+  const nextImage = () => {
+    setSelectedIndex((current) =>
+      current === filteredImages.length - 1
+        ? 0
+        : current + 1
+    );
+  };
+
   return (
     <>
       {/* =========================
@@ -109,6 +134,7 @@ function Gallery() {
         <div className="filter-buttons">
 
           {categories.map((category) => (
+
             <button
               key={category}
               className={
@@ -116,10 +142,14 @@ function Gallery() {
                   ? "filter active"
                   : "filter"
               }
-              onClick={() => setActiveCategory(category)}
+              onClick={() => {
+                setActiveCategory(category);
+                setSelectedIndex(null);
+              }}
             >
               {category}
             </button>
+
           ))}
 
         </div>
@@ -131,7 +161,8 @@ function Gallery() {
 
         <div className="gallery-grid">
 
-          {filteredImages.map((image) => (
+          {filteredImages.map((image, index) => (
+
             <div
               className="gallery-card"
               key={image.title}
@@ -139,7 +170,7 @@ function Gallery() {
 
               <div
                 className="image-container"
-                onClick={() => setSelectedImage(image)}
+                onClick={() => openLightbox(index)}
               >
 
                 <img
@@ -163,6 +194,7 @@ function Gallery() {
               </div>
 
             </div>
+
           ))}
 
         </div>
@@ -174,20 +206,39 @@ function Gallery() {
           LIGHTBOX
       ========================= */}
 
-      {selectedImage && (
+      {selectedIndex !== null && (
+
         <div
           className="lightbox"
-          onClick={() => setSelectedImage(null)}
+          onClick={closeLightbox}
         >
+
+          {/* CLOSE BUTTON */}
 
           <button
             className="lightbox-close"
-            onClick={() => setSelectedImage(null)}
+            onClick={closeLightbox}
             aria-label="Close image"
           >
             ×
           </button>
 
+
+          {/* PREVIOUS BUTTON */}
+
+          <button
+            className="lightbox-prev"
+            onClick={(event) => {
+              event.stopPropagation();
+              previousImage();
+            }}
+            aria-label="Previous image"
+          >
+            ←
+          </button>
+
+
+          {/* IMAGE */}
 
           <div
             className="lightbox-content"
@@ -195,22 +246,42 @@ function Gallery() {
           >
 
             <img
-              src={selectedImage.src}
-              alt={selectedImage.title}
+              src={filteredImages[selectedIndex].src}
+              alt={filteredImages[selectedIndex].title}
             />
 
             <div className="lightbox-info">
 
-              <h3>{selectedImage.title}</h3>
+              <h3>
+                {filteredImages[selectedIndex].title}
+              </h3>
 
-              <p>{selectedImage.category}</p>
+              <p>
+                {filteredImages[selectedIndex].category}
+              </p>
 
             </div>
 
           </div>
 
+
+          {/* NEXT BUTTON */}
+
+          <button
+            className="lightbox-next"
+            onClick={(event) => {
+              event.stopPropagation();
+              nextImage();
+            }}
+            aria-label="Next image"
+          >
+            →
+          </button>
+
         </div>
+
       )}
+
     </>
   );
 }

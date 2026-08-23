@@ -36,14 +36,18 @@ body {
   width: 100%;
   height: 78px;
   padding: 0 7%;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   background: #064e3b;
   border-bottom: 1px solid rgba(167, 243, 208, 0.15);
+
   position: sticky;
   top: 0;
   z-index: 1000;
+
   box-shadow: 0 4px 20px rgba(6, 78, 59, 0.08);
 }
 
@@ -88,10 +92,13 @@ body {
   position: absolute;
   left: 50%;
   bottom: -3px;
+
   width: 5px;
   height: 5px;
+
   background: #a7f3d0;
   border-radius: 50%;
+
   transform: translateX(-50%);
 }
 
@@ -214,7 +221,6 @@ body {
   line-height: 1.02;
 
   font-weight: 600;
-
   letter-spacing: -2px;
 
   margin-bottom: 24px;
@@ -284,7 +290,6 @@ body {
 .hero-decoration {
   width: 390px;
   height: 390px;
-
   min-width: 390px;
 
   position: relative;
@@ -402,11 +407,9 @@ body {
   color: #12372a;
 
   font-size: clamp(32px, 4vw, 46px);
-
   line-height: 1.15;
 
   font-weight: 600;
-
   letter-spacing: -1px;
 
   margin-bottom: 17px;
@@ -425,7 +428,6 @@ body {
   color: #71857c;
 
   font-size: 15px;
-
   line-height: 1.8;
 }
 
@@ -436,7 +438,6 @@ body {
 
 .filter-buttons {
   display: flex;
-
   justify-content: center;
   align-items: center;
 
@@ -453,7 +454,6 @@ body {
   border: 1px solid #d3e4db;
 
   background: #ffffff;
-
   color: #376858;
 
   border-radius: 30px;
@@ -463,7 +463,6 @@ body {
   font-family: inherit;
 
   font-size: 13px;
-
   font-weight: 500;
 
   transition: all 0.3s ease;
@@ -481,7 +480,6 @@ body {
 
 .filter.active {
   background: #064e3b;
-
   color: #ffffff;
 
   border-color: #064e3b;
@@ -541,7 +539,6 @@ body {
 
 .image-container {
   width: 100%;
-
   height: 310px;
 
   overflow: hidden;
@@ -576,11 +573,9 @@ body {
 
 .image-overlay {
   position: absolute;
-
   inset: 0;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
 
@@ -613,7 +608,6 @@ body {
   color: #ffffff;
 
   font-size: 13px;
-
   font-weight: 500;
 
   backdrop-filter: blur(5px);
@@ -634,7 +628,6 @@ body {
   color: #16382c;
 
   font-size: 16px;
-
   font-weight: 600;
 
   margin-bottom: 6px;
@@ -679,9 +672,13 @@ body {
     lightboxFade 0.25s ease;
 }
 
+
+/* =====================================================
+   LIGHTBOX CONTENT
+===================================================== */
+
 .lightbox-content {
   max-width: 850px;
-
   max-height: 90vh;
 
   display: flex;
@@ -696,7 +693,6 @@ body {
 
 .lightbox-content img {
   max-width: 100%;
-
   max-height: 75vh;
 
   object-fit: contain;
@@ -710,6 +706,11 @@ body {
     rgba(0, 0, 0, 0.4);
 }
 
+
+/* =====================================================
+   LIGHTBOX INFO
+===================================================== */
+
 .lightbox-info {
   width: 100%;
 
@@ -722,7 +723,6 @@ body {
   color: #ffffff;
 
   font-size: 20px;
-
   font-weight: 600;
 
   margin-bottom: 6px;
@@ -764,7 +764,6 @@ body {
   color: #ffffff;
 
   font-size: 30px;
-
   line-height: 1;
 
   cursor: pointer;
@@ -776,6 +775,8 @@ body {
 
   transition:
     all 0.3s ease;
+
+  z-index: 10;
 }
 
 .lightbox-close:hover {
@@ -784,6 +785,68 @@ body {
   color: #064e3b;
 
   transform: rotate(90deg);
+}
+
+
+/* =====================================================
+   LIGHTBOX PREVIOUS / NEXT
+===================================================== */
+
+.lightbox-prev,
+.lightbox-next {
+  position: absolute;
+
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  width: 50px;
+  height: 50px;
+
+  border:
+    1px solid
+    rgba(255, 255, 255, 0.35);
+
+  border-radius: 50%;
+
+  background:
+    rgba(255, 255, 255, 0.08);
+
+  color: #ffffff;
+
+  font-size: 24px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  transition:
+    all 0.3s ease;
+
+  z-index: 10;
+}
+
+.lightbox-prev {
+  left: 30px;
+}
+
+.lightbox-next {
+  right: 30px;
+}
+
+.lightbox-prev:hover,
+.lightbox-next:hover {
+  background: #a7f3d0;
+
+  color: #064e3b;
+
+  transform:
+    translateY(-50%)
+    scale(1.1);
 }
 
 
@@ -928,7 +991,7 @@ body {
   }
 
 
-  /* SERUM - SHOW ON PHONE */
+  /* SERUM */
 
   .hero-decoration {
     display: block;
@@ -999,7 +1062,7 @@ body {
   }
 
 
-  /* SMALL TWO-COLUMN CARDS */
+  /* TWO COLUMN GALLERY */
 
   .gallery-grid {
     grid-template-columns:
@@ -1053,7 +1116,6 @@ body {
 
   .lightbox-close {
     top: 15px;
-
     right: 15px;
 
     width: 40px;
@@ -1064,6 +1126,25 @@ body {
 
   .lightbox-info h3 {
     font-size: 17px;
+  }
+
+
+  /* MOBILE PREVIOUS / NEXT */
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 40px;
+    height: 40px;
+
+    font-size: 19px;
+  }
+
+  .lightbox-prev {
+    left: 10px;
+  }
+
+  .lightbox-next {
+    right: 10px;
   }
 }
 
@@ -1099,7 +1180,7 @@ body {
   }
 
 
-  /* SMALL PHONE SERUM */
+  /* SERUM */
 
   .hero-decoration {
     width: 250px;
@@ -1180,6 +1261,25 @@ body {
 
     letter-spacing: 1.5px;
   }
+
+
+  /* SMALL PHONE LIGHTBOX */
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 36px;
+    height: 36px;
+
+    font-size: 17px;
+  }
+
+  .lightbox-prev {
+    left: 6px;
+  }
+
+  .lightbox-next {
+    right: 6px;
+  }
 }
 
 
@@ -1236,5 +1336,13 @@ body {
 
   .image-info p {
     font-size: 7px;
+  }
+
+  .lightbox-prev,
+  .lightbox-next {
+    width: 34px;
+    height: 34px;
+
+    font-size: 16px;
   }
 }
