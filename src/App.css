@@ -1346,3 +1346,6 @@ body {
     font-size: 16px;
   }
 }
+.hero::before {
+  display: none;
+}
